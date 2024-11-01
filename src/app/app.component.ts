@@ -1,73 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { AgChartsModule } from 'ag-charts-angular';
-import { AgBarSeriesOptions, AgChartCaptionOptions, AgChartOptions, } from 'ag-charts-community';
-import { ApiService } from './services/api.service';
-
-// Objetos con los datos que queremos recuperar
-//
-// Consulta de visitas por día
-interface consultasDia {
-  fecha : string;
-  consultas : number;
-}
-
-// Consulta de los últimos accesos (usuarios logueados)
-interface ultimosAccesos {  
-  id_usuario : number;
-  fecha: string;
-}
-
-// Consulta número de visitas por pestaña
-interface  visitasPestana {
-  pestana: string;
-  visitas: number;
-}
+import { VisitasDiaComponent } from './visitas-dia/visitas-dia.component';
+import { PestanaVisitasComponent } from "./pestana-visitas/pestana-visitas.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, AgChartsModule],
-  template: '<ag-charts [options]="visitasDia"/>'  
+  imports: [
+    CommonModule,
+    VisitasDiaComponent,
+    PestanaVisitasComponent
+],
+  template: `
+    <div class="app-container">
+      <visitas-dia></visitas-dia>
+      <br><br><br>
+      <pestana-visitas></pestana-visitas>      
+    </div>
+  `
 })
-
-
-export class AppComponent implements OnInit {
-  public visitasDia: AgChartOptions;
-
-  // Inyecta el servicio en el constructor
-  constructor(private apiService: ApiService) {
-
-    this.visitasDia = {    
-      title: {
-        text: "Número de visitas por día"
-      } as AgChartCaptionOptions,
-      data: [], // Datos iniciales vacíos
-      series: [
-        {
-          type: "bar",
-          xKey: "fecha",
-          yKey: "pestana"
-        } as AgBarSeriesOptions,
-      ]
-    };
-  }
-
- 
-  ngOnInit(): void {
-    // llamada a la API
-    this.apiService.getConsultasDias().subscribe(
-      (data: consultasDia[]) => {        
-       
-        this.visitasDia = {
-          ...this.visitasDia, 
-          data: data 
-        };
-      },
-      (error) => {
-        console.error('Error al obtener los datos de la API:', error);
-      }
-    );
-  }
-}
+export class AppComponent {}

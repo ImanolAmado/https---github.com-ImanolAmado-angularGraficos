@@ -22,7 +22,7 @@ export class ApiService {
   return this.http.get(`${this.apiUrl}/GetPestanaVisitas`); 
 }
 
-// Método para obtener los datos de /GetPestanaVisitas
+// Método para obtener los datos de /GetUltimosAccesos
  getUltimosAccesos(): Observable<any> {
   return this.http.get(`${this.apiUrl}/GetUltimosAccesos`); 
 }
