@@ -5,6 +5,8 @@ import { AgChartsModule } from 'ag-charts-angular';
 import { AgBarSeriesOptions, AgChartCaptionOptions, AgChartOptions, } from 'ag-charts-community';
 import { ApiService } from '../services/api.service';
 
+
+
 // Objetos con los datos que queremos recuperar
 //
 // Consulta de visitas por día
@@ -54,7 +56,7 @@ export class PestanaVisitasComponent implements OnInit {
         };
       },
       (error) => {
-        console.error('Error al obtener los datos de la API:', error);
+        console.error('¡Error!', error);
       }
     );
   }

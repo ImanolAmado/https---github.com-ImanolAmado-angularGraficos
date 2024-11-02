@@ -13,7 +13,6 @@ interface consultasDia {
   consultas : number;
 }
 
-
 @Component({
   selector: 'visitas-dia',
   standalone: true,
@@ -57,7 +56,7 @@ export class VisitasDiaComponent implements OnInit {
         };
       },
       (error) => {
-        console.error('Error al obtener los datos de la API:', error);
+        console.error('¡Error!', error);
       }
     );
   }
