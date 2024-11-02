@@ -18,7 +18,7 @@ import { UltimosAccesosComponent } from './ultimos-accesos/ultimos-accesos.compo
       <visitas-dia></visitas-dia>
       <br><br><br>
       <pestana-visitas></pestana-visitas>    
-      <br><br><br>
+      <br><br><br>      
       <ultimos-accesos></ultimos-accesos>
     </div>
   `

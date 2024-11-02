@@ -18,26 +18,55 @@ interface ultimosAccesos {
   standalone: true,
   imports: [AgGridAngular],
   styleUrls: ['../../styles.css'],
-  template: '<ag-grid-angular class="ag-theme-quartz" style="height: 500px;" [rowData]="rowData" [columnDefs]="colDefs"></ag-grid-angular>',
+  template: '<ag-grid-angular class="ag-theme-quartz" style="height: 500px;" [rowData]="rowData" [columnDefs]="colDefs" [pagination]="pagination" [paginationPageSize]="paginationPageSize"></ag-grid-angular>'
   
 })
 
-export class UltimosAccesosComponent  {
+// Clase que implementa OnInit
+export class UltimosAccesosComponent implements OnInit {
 
-  // Row Data: The data to be displayed.
- rowData = [
-  { make: "Tesla", model: "Model Y", price: 64950, electric: true },
-  { make: "Ford", model: "F-Series", price: 33850, electric: false },
-  { make: "Toyota", model: "Corolla", price: 29600, electric: false },
-];
+  pagination = true;
+  paginationPageSize=20;  
+  //paginationPageSizeSelector = [10-20]
+  
+  constructor(private apiService: ApiService) {} 
+  
+  rowData: ultimosAccesos[] = []; 
+  
+  colDefs: ColDef<ultimosAccesos>[] = [ 
+    { field: 'id_usuario' },
+    { field: 'fecha' }
+  ]; 
 
-// Column Definitions: Defines the columns to be displayed.
-colDefs: ColDef[] = [
-  { field: "make" },
-  { field: "model" },
-  { field: "price" },
-  { field: "electric" }
-];
+  defaultColDef: ColDef = { 
+    flex: 1,
+  };
+
+
+ngOnInit(): void {
+  // llamada a la API
+  this.apiService.getUltimosAccesos().subscribe(
+    (data: ultimosAccesos[]) => {
+
+      // Devuelve el valor
+      console.log(data);
+      this.rowData = data;    
+     
+    },
+    (error) => {
+      console.error('¡Error!', error);
+    }
+  );
 }
 
+}
+
+/*
+colDefs: ColDef[] = [
+  { field: "Id_usuario" },
+  { field: "Fecha" },
+  
+];
+}
+*/
 
