@@ -36,7 +36,7 @@ export class VisitasDiaComponent implements OnInit {
         {
           type: "bar",
           xKey: "fecha",
-          yKey: "pestana"
+          yKey: "visitas"
         } as AgBarSeriesOptions,
       ]
     };
