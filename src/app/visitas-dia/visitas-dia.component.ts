@@ -10,7 +10,7 @@ import { ApiService } from '../services/api.service';
 // Consulta de visitas por día
 interface consultasDia {
   fecha : string;
-  consultas : number;
+  pestana : number;
 }
 
 @Component({
@@ -36,7 +36,7 @@ export class VisitasDiaComponent implements OnInit {
         {
           type: "bar",
           xKey: "fecha",
-          yKey: "visitas"
+          yKey: "pestana"
         } as AgBarSeriesOptions,
       ]
     };
