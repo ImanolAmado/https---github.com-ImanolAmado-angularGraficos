@@ -6,7 +6,6 @@ import { AgBarSeriesOptions, AgChartCaptionOptions, AgChartOptions, } from 'ag-c
 import { ApiService } from '../services/api.service';
 
 
-
 // Objetos con los datos que queremos recuperar
 //
 // Consulta de visitas por día
